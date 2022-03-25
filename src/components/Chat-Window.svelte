@@ -42,12 +42,12 @@
   }
 </script>
 
-<div class="grid-rows-2 rounded-xl bg-gradient-to-r bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 p-2 sm:p-6">
-    <ol class="relative border-l border-gray-200 dark:border-gray-700 overflow-y-auto">
+<div class="grid-rows-2 rounded-xl bg-gradient-to-r bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 p-2 sm:p-6 overflow-auto">
+  <div class="overflow-auto">
       {#each messages as message (message.when)}
         <ChatBubble {message} />
       {/each}
-    </ol>
+  </div>
   <div class="w-full ">
     <form on:submit|preventDefault={sendMessage}>
       <input
@@ -60,3 +60,6 @@
     </form>
   </div>
 </div>
+
+<style>
+</style>

@@ -3,7 +3,7 @@
   export let message;
 </script>
 
-<!--
+
 
 <div
   class="mb-4 flex-1  {`${$user}` === message.who ? 'text-right' : 'text.left'}"
@@ -17,8 +17,8 @@
   </div>
   <div class="pl-4"><small class="text-gray-500">{message.who}</small></div>
 </div>
--->
 
+<!--
 <li class="mb-10 ml-6">
     <span
       class="flex absolute -left-3 justify-center items-center w-6 h-6 bg-blue-200 rounded-full ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900"
@@ -41,3 +41,4 @@
       </div>
     </div>
   </li>
+  -->
