@@ -3,8 +3,7 @@
 -> Dezentrale Platform
 
 ## Funktionen:
-- Encrypted chat zwischen usern
-- User search und profile page
+- Encrypted chat zwischen usern anhand von user ids
 - Credit system mit Leaderboard
 - Start credit
 - Unterschiedliche Spiele zum einsetzen und gewinnen von credits
