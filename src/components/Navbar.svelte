@@ -1,6 +1,12 @@
 <script>
-  import { user } from '@/user.js';
+  import { user, db_user } from '@/user.js';
   import UserImage from '@/components/UserImage.svelte';
+
+  const logout = () => {
+    db_user.leave();
+    user.set('');
+    window.location.reload();
+  }
 </script>
 
 <nav class="w-auto h-20 inset-x-6 top-6 px-4 fixed bg-white rounded-lg shadow">
@@ -15,14 +21,17 @@
       <button type="button" class="mr-1 text-gray-700 hover:bg-gray-100 h-full rounded-lg text-lg font-medium px-5 py-2.5 text-center">About</button>
       <button type="button" class="mr-10 text-gray-700 hover:bg-gray-100 h-full rounded-lg text-lg font-medium px-5 py-2.5 text-center">Contact</button>
       -->
-      <a href="/profile" class="h-full flex items-center justify-center">
+      <div class="h-full flex items-center justify-center">
         <div class="mr-4 text-right">
           {$user}<br>
           2783678324€
         </div>
-        <img class="h-full rounded-xl" src="https://avatars.dicebear.com/api/adventurer-neutral/{$user}.svg" alt="user">
-      </a>
+        <img class="mr-4 h-full rounded-xl" src="https://avatars.dicebear.com/api/adventurer-neutral/{$user}.svg" alt="user">
+        <button on:click={logout} type="button" class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5">Logout</button>
+      </div>
+      
     </div>
+    
 </nav>
 
 <!--

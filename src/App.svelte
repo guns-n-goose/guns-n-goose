@@ -31,12 +31,6 @@
         resolve();
     }, 300);
   })
-
-  const logout = () => {
-    db_user.leave();
-    user.set('');
-    window.location.reload();
-  }
 </script>
 
 
@@ -49,6 +43,5 @@
       <div class="w-screen h-32"/>
     {/if}
     <svelte:component this={routes[PATH].component}/>
-    <button on:click={logout} class="absolute bottom-0">Logout</button>
   {/await}
 </main>
