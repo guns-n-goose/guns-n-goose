@@ -5,6 +5,7 @@
   import About from '@/routes/about/About.svelte';
   import TermsOfService from '@/routes/terms-of-service/TermsOfService.svelte';
   import PrivacyNotice from '@/routes/privacy-notice/PrivacyNotice.svelte';
+  import Navbar from '@/components/Navbar.svelte';
   import { user, db_user } from '@/user.js';
 
   const BASE_URL = window.location.host === 'guns-n-goose.github.io' ? window.location.origin + '/guns-n-goose': window.location.origin;
@@ -38,10 +39,15 @@
   }
 </script>
 
-<main class="w-full h-full grid bg-gray-100">
+
+<main class="w-full h-full bg-gray-100">
   {#await loadApp}
     <Loader/>
   {:then}
+    {#if PATH !== '/auth'}
+      <Navbar/>
+      <div class="w-screen h-32"/>
+    {/if}
     <svelte:component this={routes[PATH].component}/>
     <button on:click={logout} class="absolute bottom-0">Logout</button>
   {/await}

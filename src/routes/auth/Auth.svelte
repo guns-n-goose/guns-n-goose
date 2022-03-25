@@ -41,16 +41,18 @@
   }
 </script>
 
-<div class="w-2/6 place-self-center drop-shadow">
-  {#if nameSubmitted == 0}
-    <AuthUsername error={error} on:continue={handleContinue} on:error={handleError}/>
-  {:else if nameSubmitted == 1}
-    <AuthRegister username={username} error={error} on:register={handleRegister} on:reset={handleReset} on:error={handleError}/>
-  {:else}
-    <AuthLogin username={username} error={error} on:login={handleLogin} on:reset={handleReset} on:error={handleError}/>
+<div class="w-full h-full grid">
+  <div class="w-2/6 place-self-center drop-shadow">
+    {#if nameSubmitted == 0}
+      <AuthUsername error={error} on:continue={handleContinue} on:error={handleError}/>
+    {:else if nameSubmitted == 1}
+      <AuthRegister username={username} error={error} on:register={handleRegister} on:reset={handleReset} on:error={handleError}/>
+    {:else}
+      <AuthLogin username={username} error={error} on:login={handleLogin} on:reset={handleReset} on:error={handleError}/>
+    {/if}
+  </div>
+
+  {#if error}
+    <AuthError error={error}/>
   {/if}
 </div>
-
-{#if error}
-  <AuthError error={error}/>
-{/if}
