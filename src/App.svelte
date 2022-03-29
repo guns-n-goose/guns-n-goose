@@ -5,8 +5,11 @@
   import About from '@/routes/about/About.svelte';
   import TermsOfService from '@/routes/terms-of-service/TermsOfService.svelte';
   import PrivacyNotice from '@/routes/privacy-notice/PrivacyNotice.svelte';
-  import { user, db_user } from '@/user.js';
-  import Chat from './routes/chat/Chat.svelte';
+  import Chat from '@/routes/chat/Chat.svelte';
+  import Navbar from '@/components/Navbar.svelte';
+  import { user, db } from '@/user.js';
+
+  import RussianRoulette from 'https://deno.land/x/svelte_russian_roulette@v.0.5/src/RussianRoulette.svelte';
 
   const BASE_URL = window.location.host === 'guns-n-goose.github.io' ? window.location.origin + '/guns-n-goose': window.location.origin;
   const PATH = window.location.href.replace(BASE_URL, '')
@@ -17,7 +20,8 @@
     '/about': {component: About, access: ''},
     '/terms-of-service': {component: TermsOfService, access: ''},
     '/privacy-notice':  {component: PrivacyNotice, access: ''},
-    '/chat': {component: Chat, access: ''},
+    '/chat': {component: Chat, access: 'loggedIn'},
+    '/russian-roulette':  {component: RussianRoulette, access: 'loggedIn'},
   }
 
   const loadApp = new Promise((resolve) => {
@@ -33,18 +37,35 @@
     }, 300);
   })
 
-  const logout = () => {
-    db_user.leave();
-    user.set('');
-    window.location.reload();
+  const handleWin = (event) => {
+    db.get('leaderboard').get($user).once((credits) => {
+      db.get('leaderboard').get($user).put(credits + event.detail.amount)
+    })
+  }
+
+  const handleLose = (event) => {
+    db.get('leaderboard').get($user).once((credits) => {
+      if (event.detail.amount === 'all') {
+        db.get('leaderboard').get($user).put(0)
+      }
+      else {
+        db.get('leaderboard').get($user).put(credits - event.detail.amount)
+      }
+    })
   }
 </script>
 
-<main class="w-full h-full grid bg-gray-100">
+
+<main class="h-screen bg-gray-200">
   {#await loadApp}
     <Loader/>
   {:then}
-    <svelte:component this={routes[PATH].component}/>
-    <button on:click={logout} class="absolute bottom-0">Logout</button>
+    {#if PATH !== '/auth'}
+      <Navbar class="z-50"/>
+      <div class="w-screen h-32"/>
+    {/if}
+    <div>
+      <svelte:component this={routes[PATH].component} on:win={handleWin} on:lose={handleLose}/>
+    </div>
   {/await}
 </main>

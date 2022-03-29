@@ -30,27 +30,34 @@
   const handleRegister = (event) => {
     db_user.create(username, event.detail.password, ({ err }) => {
       if (err) error = err;
-      else handleLogin(event);
+      else {
+        db.get('leaderboard').get(username).put(1000)
+        handleLogin(event)
+      };
     })
   }
   const handleLogin = (event) => {
     db_user.auth(username, event.detail.password, ({ err }) => {
       if (err) error = err;
-      else window.location.reload();
+      else {
+        window.location.reload();
+      }
     })
   }
 </script>
 
-<div class="w-2/6 place-self-center drop-shadow">
-  {#if nameSubmitted == 0}
-    <AuthUsername error={error} on:continue={handleContinue} on:error={handleError}/>
-  {:else if nameSubmitted == 1}
-    <AuthRegister username={username} error={error} on:register={handleRegister} on:reset={handleReset} on:error={handleError}/>
-  {:else}
-    <AuthLogin username={username} error={error} on:login={handleLogin} on:reset={handleReset} on:error={handleError}/>
+<div class="w-screen h-screen grid">
+  <div class="w-2/6 place-self-center drop-shadow">
+    {#if nameSubmitted == 0}
+      <AuthUsername error={error} on:continue={handleContinue} on:error={handleError}/>
+    {:else if nameSubmitted == 1}
+      <AuthRegister username={username} error={error} on:register={handleRegister} on:reset={handleReset} on:error={handleError}/>
+    {:else}
+      <AuthLogin username={username} error={error} on:login={handleLogin} on:reset={handleReset} on:error={handleError}/>
+    {/if}
+  </div>
+
+  {#if error}
+    <AuthError error={error}/>
   {/if}
 </div>
-
-{#if error}
-  <AuthError error={error}/>
-{/if}

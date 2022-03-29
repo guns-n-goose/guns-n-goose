@@ -1,5 +1,6 @@
 <script>
   import { createEventDispatcher } from 'svelte';
+  import UserImage from '@/components/UserImage.svelte';
 
   export let username;
   export let error;
@@ -12,7 +13,7 @@
 </script>
 
 <div class="w-full h-auto bg-white rounded-xl px-12 py-6">
-  <img class="rounded-xl w-1/3 m-auto border-3 border-gray-700" src="https://avatars.dicebear.com/api/adventurer-neutral/{username}.svg" alt="profile">
+  <UserImage username={username}/>
   <div class="w-full text-center text-2xl">{username}</div>
   <div class="w-full mb-4 text-center font-light text-blue-700"><span on:click={resetEvent} class="cursor-pointer hover:underline">Use different account</span></div>
   <input on:change={() => errorEvent('')} bind:value={password} type="password" placeholder="Password" class="{error ? 'border-rose-600' : 'border-gray-300'} w-full mb-4 bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5">

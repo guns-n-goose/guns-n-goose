@@ -24,8 +24,8 @@
 </script>
 
 <div class="w-full h-auto bg-white rounded-xl px-12">
-  <img src="/guns-n-goose/static/logo-text.svg" alt="logo" class="m-auto w-1/2">
-  <input on:change={() => errorEvent('')} bind:value={username} placeholder="Enter your username" class="{error ? 'border-rose-600' : 'border-gray-300'} w-full my-4 bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5">
+  <img src="/guns-n-goose/static/logo-text.svg" alt="logo" class="m-auto w-8/12">
+  <input on:change={() => errorEvent('')} bind:value={username} placeholder="Enter your username" class="{error ? 'border-rose-600' : 'border-gray-300'} w-full mb-4 bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5">
   <button on:click={() => { if (checkUsername()) continueEvent()}} class="w-full mb-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Continue</button>
 </div>
 
