@@ -42,7 +42,7 @@
   }
 </script>
 
-<div class="grid-rows-2 rounded-xl bg-gradient-to-r bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 p-2 sm:p-6 overflow-auto">
+<div class="max-h-[70vh] overflow-auto grid-rows-2 rounded-xl bg-gradient-to-r bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 p-2 sm:p-6 overflow-auto">
   <div class="overflow-auto">
       {#each messages as message (message.when)}
         <ChatBubble {message} />
