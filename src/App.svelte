@@ -5,6 +5,7 @@
   import About from '@/routes/about/About.svelte';
   import TermsOfService from '@/routes/terms-of-service/TermsOfService.svelte';
   import PrivacyNotice from '@/routes/privacy-notice/PrivacyNotice.svelte';
+  import Chat from '@/routes/chat/Chat.svelte';
   import Navbar from '@/components/Navbar.svelte';
   import { user, db } from '@/user.js';
 
@@ -19,6 +20,7 @@
     '/about': {component: About, access: ''},
     '/terms-of-service': {component: TermsOfService, access: ''},
     '/privacy-notice':  {component: PrivacyNotice, access: ''},
+    '/chat': {component: Chat, access: 'loggedIn'},
     '/russian-roulette':  {component: RussianRoulette, access: 'loggedIn'},
   }
 
