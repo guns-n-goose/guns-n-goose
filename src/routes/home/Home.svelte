@@ -6,7 +6,7 @@
   import HomeLeaderboard from './HomeLeaderboard.svelte';
   import HomeCard from './HomeCard.svelte';
 
-  export const BASE_URL = '';
+  export let BASE_URL;
 
   const cards = [
     { num: 1, text: 'Chat', id: 'chat' },

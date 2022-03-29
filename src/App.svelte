@@ -56,7 +56,6 @@
 </script>
 
 
-{BASE_URL}
 <main class="h-screen bg-gray-200">
   {#await loadApp}
     <Loader/>
