@@ -8,7 +8,7 @@
   import Navbar from '@/components/Navbar.svelte';
   import { user, db } from '@/user.js';
 
-  import RussianRoulette from 'https://raw.githubusercontent.com/guns-n-goose/russian-roulette-game/all-in-one/src/RussianRoulette.svelte';
+  import RussianRoulette from 'https://deno.land/x/svelte_russian_roulette@v.0.5/src/RussianRoulette.svelte';
 
   const BASE_URL = window.location.host === 'guns-n-goose.github.io' ? window.location.origin + '/guns-n-goose': window.location.origin;
   const PATH = window.location.href.replace(BASE_URL, '')
@@ -38,12 +38,18 @@
   const handleWin = (event) => {
     db.get('leaderboard').get($user).once((credits) => {
       db.get('leaderboard').get($user).put(credits + event.detail.amount)
-      console.log(credits, ' : ', event.detail)
     })
   }
 
   const handleLose = (event) => {
-
+    db.get('leaderboard').get($user).once((credits) => {
+      if (event.detail.amount === 'all') {
+        db.get('leaderboard').get($user).put(0)
+      }
+      else {
+        db.get('leaderboard').get($user).put(credits - event.detail.amount)
+      }
+    })
   }
 </script>
 
@@ -57,7 +63,7 @@
       <div class="w-screen h-32"/>
     {/if}
     <div>
-      <svelte:component this={routes[PATH].component} on:win={handleWin}/>
+      <svelte:component this={routes[PATH].component} on:win={handleWin} on:lose={handleLose}/>
     </div>
   {/await}
 </main>

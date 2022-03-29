@@ -18,7 +18,7 @@
       </tr>
   </thead>
     <tbody>
-      {#each Object.entries($leaderboard) as [user, credits], index}
+      {#each Object.entries($leaderboard).sort((a, b) => b[1]-a[1]) as [user, credits], index}
         <HomeLeaderboardRow rank={index+1} username={user} credits={credits}/>
       {/each}
     </tbody>
