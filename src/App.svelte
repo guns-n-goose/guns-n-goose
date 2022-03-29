@@ -6,6 +6,7 @@
   import TermsOfService from '@/routes/terms-of-service/TermsOfService.svelte';
   import PrivacyNotice from '@/routes/privacy-notice/PrivacyNotice.svelte';
   import { user, db_user } from '@/user.js';
+  import Chat from './routes/chat/Chat.svelte';
 
   const BASE_URL = window.location.host === 'guns-n-goose.github.io' ? window.location.origin + '/guns-n-goose': window.location.origin;
   const PATH = window.location.href.replace(BASE_URL, '')
@@ -16,6 +17,7 @@
     '/about': {component: About, access: ''},
     '/terms-of-service': {component: TermsOfService, access: ''},
     '/privacy-notice':  {component: PrivacyNotice, access: ''},
+    '/chat': {component: Chat, access: ''},
   }
 
   const loadApp = new Promise((resolve) => {
