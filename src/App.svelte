@@ -26,10 +26,10 @@
 
   const loadApp = new Promise((resolve) => {
     if (!routes[PATH])
-      window.location.href = $BASE_URL;
+      window.location.href = BASE_URL;
     setTimeout(() => {
       if (routes[PATH].access === 'loggedIn' && !$user)
-        window.location.href = $BASE_URL + '/auth';
+        window.location.href = BASE_URL + '/auth';
       else if (routes[PATH].access === 'loggedOut' && $user)
         window.location.href = BASE_URL;
       else 
