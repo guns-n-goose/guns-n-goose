@@ -7,12 +7,12 @@
   import PrivacyNotice from '@/routes/privacy-notice/PrivacyNotice.svelte';
   import Chat from '@/routes/chat/Chat.svelte';
   import Navbar from '@/components/Navbar.svelte';
-  import { user, db } from '@/user.js';
+  import { user, db, BASE_URL, PATH } from '@/user.js';
 
   import RussianRoulette from 'https://deno.land/x/svelte_russian_roulette@v.0.5/src/RussianRoulette.svelte';
-
-  const BASE_URL = window.location.host === 'guns-n-goose.github.io' ? window.location.origin + '/guns-n-goose': window.location.origin;
-  const PATH = window.location.href.replace(BASE_URL, '')
+  
+  //const BASE_URL = window.location.host === 'guns-n-goose.github.io' ? window.location.origin + '/guns-n-goose': window.location.origin;
+  //const PATH = window.location.href.replace(BASE_URL, '')
 
   const routes = {
     '/': {component: Home, access: 'loggedIn'},
@@ -25,13 +25,13 @@
   }
 
   const loadApp = new Promise((resolve) => {
-    if (!routes[PATH])
-      window.location.href = BASE_URL;
+    if (!routes[$PATH])
+      window.location.href = $BASE_URL;
     setTimeout(() => {
-      if (routes[PATH].access === 'loggedIn' && !$user)
-        window.location.href = BASE_URL + '/auth';
-      else if (routes[PATH].access === 'loggedOut' && $user)
-        window.location.href = BASE_URL;
+      if (routes[$PATH].access === 'loggedIn' && !$user)
+        window.location.href = $BASE_URL + '/auth';
+      else if (routes[$PATH].access === 'loggedOut' && $user)
+        window.location.href = $BASE_URL;
       else 
         resolve();
     }, 300);
@@ -60,12 +60,12 @@
   {#await loadApp}
     <Loader/>
   {:then}
-    {#if PATH !== '/auth'}
+    {#if $PATH !== '/auth'}
       <Navbar class="z-50"/>
       <div class="w-screen h-32"/>
     {/if}
     <div>
-      <svelte:component this={routes[PATH].component} on:win={handleWin} on:lose={handleLose}/>
+      <svelte:component this={routes[$PATH].component} on:win={handleWin} on:lose={handleLose}/>
     </div>
   {/await}
 </main>

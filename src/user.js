@@ -1,7 +1,7 @@
 import GUN from 'gun';
 import 'gun/sea';
 import 'gun/axe';
-import { writable } from 'svelte/store';
+import { writable, readable } from 'svelte/store';
 
 function localStorageStore({ storageKey, initialValue = "" }) {
     const init = localStorage.getItem(storageKey) || initialValue;
@@ -27,6 +27,8 @@ export const chats = writable([])
 export const activeChat = localStorageStore({storageKey:'active_chat'})
 export const activeKey = localStorageStore({storageKey:'active_key'})
 export const nav = localStorageStore({storageKey: "chat_nav", initialValue: "add_chat",});
+export const BASE_URL = readable(window.location.host === 'guns-n-goose.github.io' ? window.location.origin + '/guns-n-goose': window.location.origin);
+export const PATH = readable(window.location.href.replace(BASE_URL, ''))
 
 db.get('leaderboard').map().on(async (credits, user) => {
   leaderboard.update(v => {
