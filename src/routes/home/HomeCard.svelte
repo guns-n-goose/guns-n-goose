@@ -1,3 +1,10 @@
-<div class="w-full h-full bg-white rounded-lg shadow">
-    Card
-</div>
+<script>
+  export let num = 1;
+  export let text = '';
+  export let id = '';
+</script>
+
+<a href="/{id}" class="rounded-lg bg-white shadow max-h-full" style="grid-area: card{num}">
+  <div class="w-full text-center text-2xl text-gray-900 my-4">{text}</div>
+  <img class="rounded-lg" src="/guns-n-goose/static/{id}.png" alt={text}>
+</a>

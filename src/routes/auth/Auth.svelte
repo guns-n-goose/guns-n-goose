@@ -30,18 +30,23 @@
   const handleRegister = (event) => {
     db_user.create(username, event.detail.password, ({ err }) => {
       if (err) error = err;
-      else handleLogin(event);
+      else {
+        db.get('leaderboard').get(username).put(1000)
+        handleLogin(event)
+      };
     })
   }
   const handleLogin = (event) => {
     db_user.auth(username, event.detail.password, ({ err }) => {
       if (err) error = err;
-      else window.location.reload();
+      else {
+        window.location.reload();
+      }
     })
   }
 </script>
 
-<div class="w-full h-full grid">
+<div class="w-screen h-screen grid">
   <div class="w-2/6 place-self-center drop-shadow">
     {#if nameSubmitted == 0}
       <AuthUsername error={error} on:continue={handleContinue} on:error={handleError}/>

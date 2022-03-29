@@ -1,6 +1,5 @@
 <script>
-  import { user, db_user } from '@/user.js';
-  import UserImage from '@/components/UserImage.svelte';
+  import { user, db_user, db, leaderboard } from '@/user.js';
 
   const logout = () => {
     db_user.leave();
@@ -24,12 +23,11 @@
       <div class="h-full flex items-center justify-center">
         <div class="mr-4 text-right">
           {$user}<br>
-          2783678324€
+          {$leaderboard[$user]}
         </div>
         <img class="mr-4 h-full rounded-xl" src="https://avatars.dicebear.com/api/adventurer-neutral/{$user}.svg" alt="user">
         <button on:click={logout} type="button" class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5">Logout</button>
       </div>
-      
     </div>
     
 </nav>
