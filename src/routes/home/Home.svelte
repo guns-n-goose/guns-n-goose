@@ -6,6 +6,8 @@
   import HomeLeaderboard from './HomeLeaderboard.svelte';
   import HomeCard from './HomeCard.svelte';
 
+  export const BASE_URL = '';
+
   const cards = [
     { num: 1, text: 'Chat', id: 'chat' },
     { num: 2, text: 'Russian Roulette', id: 'russian-roulette' },
@@ -19,7 +21,7 @@
     <HomeLeaderboard/>
   </div>
   {#each cards as card}
-    <HomeCard {...card}/>
+    <HomeCard BASE_URL={BASE_URL} {...card}/>
   {/each}
 </div>
 

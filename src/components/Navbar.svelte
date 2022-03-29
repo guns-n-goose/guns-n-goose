@@ -1,5 +1,7 @@
 <script>
-  import { user, db_user, leaderboard, BASE_URL } from '@/user.js';
+  import { user, db_user, leaderboard } from '@/user.js';
+
+  export const BASE_URL = '';
 
   const logout = () => {
     db_user.leave();
@@ -10,7 +12,7 @@
 
 <nav class="w-auto h-20 inset-x-6 top-6 px-4 fixed bg-white rounded-lg shadow">
     <div class="h-full float-left">
-      <a href="{$BASE_URL}" class="h-full">
+      <a href="{BASE_URL}" class="h-full">
         <img class="h-full" src="/guns-n-goose/static/logo-text.svg" alt="logo">
       </a>
     </div>
