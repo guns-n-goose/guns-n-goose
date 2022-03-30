@@ -1,7 +1,7 @@
 <script>
   import { user, db_user, leaderboard } from '@/user.js';
 
-  export const BASE_URL = '';
+  export let BASE_URL;
 
   const logout = () => {
     db_user.leave();
