@@ -11,8 +11,8 @@
   const cards = [
     { num: 1, text: 'Chat', id: 'chat' },
     { num: 2, text: 'Russian Roulette', id: 'russian-roulette' },
-    { num: 3, text: 'Wheel of Fortune', id: 'russian-roulette' },
-    { num: 4, text: 'Sidescroller', id: 'russian-roulette' },
+    { num: 3, text: 'Wheel of Fortune', id: 'wheel-of-fortune' },
+    { num: 4, text: 'Sidescroller', id: 'sidescroller' },
   ]
 </script>
 

@@ -2,4 +2,7 @@
     <title>Guns N' Goose - Privacy Notice</title>
 </svelte:head>
 
-<h1>Privacy Notice</h1>
+<div class="text-center">
+  <h1>Privacy Notice</h1>
+  <h2>🚧 Under Construction 🚧</h2>
+</div>
