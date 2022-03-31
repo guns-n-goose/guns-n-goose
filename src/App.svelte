@@ -11,6 +11,7 @@
 
   import RussianRoulette from 'https://deno.land/x/svelte_russian_roulette@v.1.2/RussianRoulette.svelte';
   import WheelOfFortune from 'https://deno.land/x/svelte_wheel_of_fortune@gamma/Wheel-of-Fortune.svelte';
+  import ColorClicker from 'https://deno.land/x/colorclicker@Release-2/Colorclicker.svelte';
   
   const BASE_URL = window.location.host === 'guns-n-goose.github.io' ? window.location.origin + '/guns-n-goose': window.location.origin;
   const PATH = window.location.href.replace(BASE_URL, '')
@@ -24,6 +25,7 @@
     '/chat': {component: Chat, access: 'loggedIn'},
     '/russian-roulette':  {component: RussianRoulette, access: 'loggedIn'},
     '/wheel-of-fortune':  {component: WheelOfFortune, access: 'loggedIn'},
+    '/color-clicker':  {component: ColorClicker, access: 'loggedIn'},
   }
 
   const loadApp = new Promise((resolve) => {
